@@ -15,7 +15,8 @@ const autherSchema=new mongoose.Schema({
     title:{
         type:String,
         required:true,
-        enum:["mr","mrs","miss","Mr","Mrs","Miss"]
+        lowercase:true,
+        enum:["mr","mrs","miss","Mr","Mrs","miss"]
     },
     email: {
         type: String,
@@ -35,13 +36,7 @@ const autherSchema=new mongoose.Schema({
         required:true,
         
    trim: true,
-   minlength: 7,
-   validate(value){
-      if(value.toLowerCase().includes('password')){
-         throw new Error('Password cannot be the word `password`')
-      }
-   }
-    }
+   minlength: 7}
 },{timestamps:true} )
 
 module.exports=mongoose.model('Author',autherSchema)
